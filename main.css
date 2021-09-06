@@ -1,0 +1,40 @@
+@import url('https://scp-wiki.wdfiles.com/local--files/component%3Atheme/font-bauhaus.css');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap');
+
+:root {
+    --main-bg: #223;
+    --half-bg: #335;
+    --light-bg: #446;
+    --main-text: #fef;
+    --main-accent: #aae;
+}
+
+html, input, button, select, option {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+html {
+    background: var(--main-bg);
+    color: var(--main-text);
+}
+input, button, option, select {
+    background: var(--main-bg);
+    color: var(--main-text);
+    border: 1px solid var(--main-accent);
+    padding: 3px;
+    border-radius: 4px;
+}
+button:hover {
+    cursor: pointer;
+    background: var(--half-bg);
+}
+button:active {
+    background: var(--light-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "BauhausLTDemi";
+    margin: 0;
+}
+input {
+    width: 12ch;
+}

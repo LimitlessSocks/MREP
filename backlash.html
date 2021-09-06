@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backlash Calculator</title>
+    <link rel="STYLESHEET" href="main.css">
+    <script src="./backlash.js"></script>
+    <script>
+    
+        window.addEventListener("load", function () {
+            let submit = document.getElementById("submit");
+            let output = document.getElementById("output");
+            
+            let caspers = document.getElementById("caspers");
+            let hue = document.getElementById("hue");
+            let pitch = document.getElementById("pitch");
+            let weave = document.getElementById("weave");
+            let lawFactor = document.getElementById("law-factor");
+            let statButtons = [
+                caspers, hue, pitch, weave, lawFactor
+            ];
+            submit.addEventListener("click", function () {
+                let working = new Working(
+                    parseFloat(caspers.value),
+                    hue.value,
+                    pitch.value,
+                    weave.value,
+                    lawFactor.value
+                );
+                
+                let backlash = working.backlash();
+                
+                let line = document.createElement("p");
+                line.appendChild(document.createTextNode(working.getDescriptor() + " "));
+                line.appendChild(working.getButton(statButtons));
+                line.appendChild(document.createTextNode(" \u279C "));
+                line.appendChild(document.createTextNode(backlash.getDescriptor() + " "));
+                line.appendChild(backlash.getButton(statButtons));
+                
+                output.appendChild(line);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Backlash Calculator</h1>
+    <label for="caspers">Caspers: </label><input id="caspers" type="number" step="any" value=3000>
+    <label for="hue">Hue: </label><select id="hue">
+        <option>Ruby</option>
+        <option>Topaz</option>
+        <option>Lemon</option>
+        <option>Malachite</option>
+        <option>Sapphire</option>
+        <option>Ebony</option>
+        <option>Over-Ebony</option>
+    </select>
+    <label for="pitch">Pitch: </label><select id="pitch">
+        <option>Double-Flat</option>
+        <option>Flat</option>
+        <option>Natural</option>
+        <option>Sharp</option>
+        <option>Double-Sharp</option>
+    </select>
+    <label for="weave">Weave: </label><select id="weave">
+        <option>Sparse</option>
+        <option>Loose</option>
+        <option>Tight</option>
+        <option>Locked</option>
+    </select>
+    <label for="law-factor">Law Factor: </label><input id="law-factor" type="string" value="7/12">
+    <button id="submit">Calculate Backlash</button>
+    <div id="output"></div>
+</body>
+</html>
